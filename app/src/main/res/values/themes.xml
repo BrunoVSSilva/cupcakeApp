@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.CupcakeApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- Cores primárias -->
+        <item name="colorPrimary">@color/rosa_400</item>
+        <item name="colorPrimaryVariant">@color/rosa_950</item>
+        <!-- Sobre cor primária-->
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Cores Secundárias -->
+        <item name="colorSecondary">@color/roxo_400</item>
+        <item name="colorSecondaryVariant">@color/roxo_700</item>
+        <!-- Sobre cor primária-->
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!--  Cor da barra de status-->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!--  Cor dos radiobuttons-->
+        <item name="radioButtonStyle">@style/Widget.Cupcake.CompoundButton.RadioButton</item>
+        <!--  Cor no style de texto subtitle-->
+        <item name="textAppearanceSubtitle1">@style/Widget.Cupcake.TextView.Subtitle1</item>
+
+    </style>
+</resources>

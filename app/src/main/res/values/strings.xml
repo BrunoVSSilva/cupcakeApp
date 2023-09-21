@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">cupcake app</string>
+    <string name="peca_seu_cupcake">Peça seu cupcake</string>
+    <string name="preco_cupcake">Cada cupcake custa R$4,00</string>
+    <string name="quantosCupcakes">Digite quantos cupcakes você deseja</string>
+    <string name="btn_next">Próximo</string>
+    <string name="erroLogin">Opss. parece que algo deu errado...</string>
+    <string name="valorEstipulado">Subtotal: %s</string>
+    <string name="valorTotal">Total: %s</string>
+    <string name="escolhaSabor">Escolha o Sabor do seu cupcake:</string>
+    <string name="sabor_morango">Morango</string>
+    <string name="sabor_chocolate">Chocolate</string>
+    <string name="sabor_cafe">Café</string>
+    <string name="sabor_redvelvet">Red Velvet</string>
+    <string name="sabor_caramelo">Caramelo</string>
+    <string name="btn_voltar">Voltar</string>
+    <string name="btn_avancar">Avançar</string>
+    <string name="escolhadaData">Escolha a data de retirada:</string>
+    <string name="segunda_feira">Segunda-feira</string>
+    <string name="terca_feira">Terça-feira</string>
+    <string name="quarta_feira">Quarta-feira</string>
+    <string name="quinta_feira">Quinta-feira</string>
+    <string name="sexta_feira">Sexta-feira</string>
+    <string name="detalhesDoPedido">Detalhes do pedido:</string>
+    <string name="quantidade">Quantidade</string>
+    <string name="sabor">Sabor</string>
+    <string name="data">Data de retirada</string>
+    <string name="alertTitle">Finalizando sua compra :)</string>
+    <string name="alertMessage">Obrigado por utilizar o App cupcake</string>
+    <string name="finalizar">Finalizar</string>
+</resources>
