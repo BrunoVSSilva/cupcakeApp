@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">cupcake app</string>
+    <string name="peca_seu_cupcake">Order a cupcake</string>
+    <string name="">Which cupcake costs $4,00</string>
+    <string name="quantosCupcakes">Write how many cupcakes you want to order</string>
+    <string name="btn_next">Next</string>
+    <string name="erroLogin">Woops... Looks like something went wrong :/</string>
+    <string name="valorEstipulado">Subtotal: %s</string>
+    <string name="valorTotal">Total: %s</string>
+    <string name="escolhaSabor">Choose a flavor for your cupcke</string>
+    <string name="sabor_morango">Strawberry</string>
+    <string name="sabor_chocolate">Chocolate</string>
+    <string name="sabor_cafe">Coffe</string>
+    <string name="sabor_redvelvet">Red Velvet</string>
+    <string name="sabor_caramelo">Caramel</string>
+    <string name="btn_voltar">Back</string>
+    <string name="btn_avancar">Next</string>
+    <string name="escolhadaData">Choose a pick up date</string>
+    <string name="segunda_feira">Monday</string>
+    <string name="terca_feira">Tuesday</string>
+    <string name="quarta_feira">Wednesday</string>
+    <string name="quinta_feira">Thursdey</string>
+    <string name="sexta_feira">Friday</string>
+    <string name="detalhesDoPedido">Order detail</string>
+    <string name="quantidade">Quantity</string>
+    <string name="sabor">Flavor</string>
+    <string name="data">Pick up date</string>
+    <string name="alertTitle">Finishing you order</string>
+    <string name="alertMessage">Thank you for choosing our app :)</string>
+    <string name="finalizar">Finish order</string>
+    <string name="preco_cupcake">Each cupcake costs $4,00</string>
+</resources>

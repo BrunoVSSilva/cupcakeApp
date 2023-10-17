@@ -9,13 +9,15 @@ import android.util.Log
 import com.example.cupcakeapp.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 import java.text.NumberFormat
-
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     var quantidadeStr: String = ""
     var valorInTextStr: String = ""
+    /** !!!!!!!!INPUT n DEVE SER CRIADO EM FUNÇÃO!!!!!!!!!!*/
+   /** Alterar função quantidadeStr para n ser criada em função*/
 
-    private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
