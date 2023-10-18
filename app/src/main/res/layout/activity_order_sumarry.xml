@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/detalhesDoPedido"/>
+            android:text="@string/order_overview"/>
         <View
             android:id="@+id/divider"
             style="@style/Widget.Cupcake.Divider"
@@ -36,9 +36,9 @@
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/divider"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/quantidade"/>
+            android:text="@string/quantity"/>
         <TextView
-            android:id="@+id/quantidade_real"
+            android:id="@+id/ordered_quantity"
             style="@style/Widget.Cupcake.TextView.OrderSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/quantidade_real"/>
+            app:layout_constraintTop_toBottomOf="@id/ordered_quantity"/>
         <TextView
             android:id="@+id/sabor"
             style="@style/Widget.Cupcake.TextView.Label"
@@ -62,9 +62,9 @@
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/divider1"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/sabor"/>
+            android:text="@string/flavor"/>
         <TextView
-            android:id="@+id/sabor_real"
+            android:id="@+id/ordered_flavor"
             style="@style/Widget.Cupcake.TextView.OrderSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sabor_real"/>
+            app:layout_constraintTop_toBottomOf="@id/ordered_flavor"/>
         <TextView
             android:id="@+id/data_retirada"
             style="@style/Widget.Cupcake.TextView.Label"
@@ -89,9 +89,9 @@
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/divider2"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/data"/>
+            android:text="@string/delivery_date"/>
         <TextView
-            android:id="@+id/data_retirada_real"
+            android:id="@+id/ordered_delivery_date"
             style="@style/Widget.Cupcake.TextView.OrderSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,9 +106,9 @@
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/data_retirada_real"/>
+            app:layout_constraintTop_toBottomOf="@id/ordered_delivery_date"/>
         <TextView
-            android:id="@+id/valor_total"
+            android:id="@+id/total_price"
             style="@style/Widget.Cupcake.TextView.FinalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,25 +119,25 @@
             tools:text="Valor total $5.00"/>
 
         <Button
-            android:id="@+id/finalizar"
+            android:id="@+id/finish"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/valor_total"
+            app:layout_constraintTop_toBottomOf="@id/total_price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/finalizar"
+            android:text="@string/finish"
             />
 
         <Button
-            android:id="@+id/cancel_pedido"
+            android:id="@+id/cancel_order"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/finalizar"
+            app:layout_constraintTop_toBottomOf="@id/finish"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/btn_voltar"
+            android:text="@string/btn_back"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

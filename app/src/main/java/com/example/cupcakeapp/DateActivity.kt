@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.cupcakeapp.databinding.ActivityDateBinding
-import com.example.cupcakeapp.databinding.ActivityFlavorBinding
 
 class DateActivity : AppCompatActivity() {
 
-    private lateinit var dataEscolhida: String
-    private lateinit var extrasSabor: String
-    private lateinit var extraPreco: String
-    private lateinit var extraQuantidade: String
+    private lateinit var choosedDate: String
+    private lateinit var extraFlavor: String
+    private lateinit var extraPrice: String
+    private lateinit var extraQuantity: String
     private lateinit var binding: ActivityDateBinding
 
 
@@ -22,39 +21,41 @@ class DateActivity : AppCompatActivity() {
         val binding = ActivityDateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val extrasData = intent?.extras
+        val extraDate = intent?.extras
 
-        binding.valorTotal.text = extrasData?.getString("chave_preco")
+        binding.totalPrice.text = extraDate?.getString("chave_preco")
 
         binding.nextBtn.setOnClickListener {
-            processandoDado(binding, extrasData)
-            armazenandoDados(binding, dataEscolhida, extrasData)
-            proximaTela(binding, dataEscolhida, extraPreco, extraQuantidade, extrasSabor)
+            processingData(binding, extraDate)
+            savingDataInBundle(binding, choosedDate, extraDate)
+            nextScreen(binding, choosedDate, extraPrice, extraQuantity, extraFlavor)
 
         }
         binding.cancelDate.setOnClickListener {
-            voltar(binding)
+            backScreen(binding)
         }
 
     }
 
-    private fun proximaTela(
+    private fun nextScreen(
         binding: ActivityDateBinding,
-        dataEscolhida: String,
-        extraPreco: String,
-        extraQuantidade: String,
-        extrasSabor: String
+        choosedDate: String,
+        extraPrice: String,
+        extraQuantity: String,
+        extraFlavor: String
     ) {
         val intent = Intent(this, OrderSumarryActivity::class.java)
-        intent.putExtra("chave_data", dataEscolhida)
-        intent.putExtra("chave_preco", extraPreco)
-        intent.putExtra("chave_quantidade", extraQuantidade)
-        intent.putExtra("chave_sabor", extrasSabor)
-        Log.d("testeData", "$dataEscolhida")
+        with(intent){
+            putExtra("chave_data", choosedDate)
+            putExtra("chave_preco", extraPrice)
+            putExtra("chave_quantidade", extraQuantity)
+            putExtra("chave_sabor", extraFlavor)
+        }
+        Log.d("testeData", "$choosedDate")
         startActivity(intent)
     }
 
-    private fun voltar(binding: ActivityDateBinding) {
+    private fun backScreen(binding: ActivityDateBinding) {
         val intentCancelFlavor = Intent(this, MainActivity::class.java)
         startActivity(intentCancelFlavor)
         finish()
@@ -62,27 +63,28 @@ class DateActivity : AppCompatActivity() {
 
     private fun recebeExtras(binding: ActivityDateBinding) {
         /** recebendo o dado quantidade da primeira tela*/
-        val extrasData = intent?.extras
-        processandoDado(binding, extrasData)
+        val extraDate = intent?.extras
+        processingData(binding, extraDate)
     }
 
-    private fun processandoDado(binding: ActivityDateBinding, extrasData: Bundle?) {
-        val dataEscolhidaStr = when (binding.saborOpcoes.checkedRadioButtonId) {
-            R.id.opcao1 -> "Segunda-Feira"
-            R.id.opcao2 -> "Terça-feira"
-            R.id.opcao3 -> "Quarta-feira"
-            R.id.opcao4 -> "Quinta-feira"
-            else -> "Sexta-feira"
+    private fun processingData(binding: ActivityDateBinding, extrasData: Bundle?) {
+        val choosedDateStr = when (binding.dateOptions.checkedRadioButtonId) {
+            R.id.monday -> R.string.monday
+            R.id.tuesday -> R.string.tuesday
+            R.id.wednesday -> R.string.wednesday
+            R.id.thursday -> R.string.thursday
+            else -> R.string.friday
+
         }
-        armazenandoDados(binding, dataEscolhidaStr, extrasData)
+        savingDataInBundle(binding, choosedDateStr.toString() /** corrigir para n precisar do toString()**/, extrasData)
     }
 
-    private fun armazenandoDados(binding: ActivityDateBinding, saborEscolhidoStr: String, extrasData: Bundle?) {
+    private fun savingDataInBundle(binding: ActivityDateBinding, choosedDateStr: String, extrasData: Bundle?) {
 
-        dataEscolhida = saborEscolhidoStr
-        extraPreco = extrasData?.getString("chave_preco").toString()
-        extraQuantidade = extrasData?.getString("chave_quantidade").toString()
-        extrasSabor = extrasData?.getString("chave_sabor").toString()
-        proximaTela(binding, dataEscolhida, extraPreco, extraQuantidade,extrasSabor)
+        choosedDate = choosedDateStr
+        extraPrice = extrasData?.getString("chave_preco").toString()
+        extraQuantity = extrasData?.getString("chave_quantidade").toString()
+        extraFlavor = extrasData?.getString("chave_sabor").toString()
+        nextScreen(binding, choosedDate, extraPrice, extraQuantity,extraFlavor)
     }
 }

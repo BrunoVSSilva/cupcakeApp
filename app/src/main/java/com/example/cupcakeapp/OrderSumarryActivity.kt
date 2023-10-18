@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AlertDialog
-import com.example.cupcakeapp.databinding.ActivityFlavorBinding
 import com.example.cupcakeapp.databinding.ActivityOrderSumarryBinding
 
 class OrderSumarryActivity : AppCompatActivity() {
@@ -18,28 +17,28 @@ class OrderSumarryActivity : AppCompatActivity() {
         val binding = ActivityOrderSumarryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        showOverView(binding)
+        showOverview(binding)
 
-        binding.finalizar.setOnClickListener {
+        binding.finish.setOnClickListener {
             orderFinalization(binding)
         }
-        binding.cancelPedido.setOnClickListener {
+        binding.cancelOrder.setOnClickListener {
             cancelOrder(binding)
         }
     }
 
-    private fun showOverView(binding: ActivityOrderSumarryBinding){
+    private fun showOverview(binding: ActivityOrderSumarryBinding){
         intent.extras?.apply {
             binding.run {
-                quantidadeReal.text = getString("chave_quantidade")
-                saborReal.text = getString("chave_sabor")
-                dataRetiradaReal.text = getString("chave_data")
-                valorTotal.text = getString("chave_preco")
+                orderedQuantity.text = getString("chave_quantidade")
+                orderedFlavor.text = getString("chave_sabor")
+                orderedDeliveryDate.text = getString("chave_data")
+                totalPrice.text = getString("chave_preco")
             }
         }
     }
     private fun orderFinalization(binding: ActivityOrderSumarryBinding){
-        val alertaDeCompra = AlertDialog.Builder(this)
+        val finalizationAlert = AlertDialog.Builder(this)
             .setTitle(R.string.alertTitle)
             .setMessage(R.string.alertMessage)
             .show()
@@ -49,8 +48,8 @@ class OrderSumarryActivity : AppCompatActivity() {
         }, 3000)
     }
     private fun cancelOrder(binding: ActivityOrderSumarryBinding){
-        val intentCancelPedido = Intent(this, MainActivity::class.java)
-        startActivity(intentCancelPedido)
+        val intentCancerOrder = Intent(this, MainActivity::class.java)
+        startActivity(intentCancerOrder)
         finish()
     }
 }

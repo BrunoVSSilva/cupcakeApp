@@ -7,9 +7,9 @@ import com.example.cupcakeapp.databinding.ActivityFlavorBinding
 
 class FlavorActivity : AppCompatActivity() {
 
-    private lateinit var saborEscolido: String
-    private lateinit var extraPreco: String
-    private lateinit var extraQuantidade: String
+    private lateinit var choosedFlavor: String
+    private lateinit var extraPrice: String
+    private lateinit var extraQuantity: String
     private lateinit var binding: ActivityFlavorBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,65 +19,65 @@ class FlavorActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         /** recebendo os extras da tela anterior*/
-        val extrasSabor = intent?.extras
-        extraPreco = extrasSabor?.getString("chave_preco").toString()
+        val extraFlavor = intent?.extras
+        extraPrice = extraFlavor?.getString("chave_preco").toString()
 
-        binding.valorTotal.text = extraPreco
+        binding.totalPrice.text = extraPrice
 
         binding.nextBtn.setOnClickListener {
-            processandoDado(binding, extrasSabor)
-            armazenandoDados(binding, saborEscolido, extrasSabor)
-            proximaTela(binding, saborEscolido, extraPreco, extraQuantidade)
+            processingData(binding, extraFlavor)
+            savingDataInBundle(binding, choosedFlavor, extraFlavor)
+            nextScreen(binding, choosedFlavor, extraPrice, extraQuantity)
         }
 
         binding.cancelFlavor.setOnClickListener {
-            voltar(binding)
+            backScreen(binding)
         }
     }
-    private fun proximaTela(
+    private fun nextScreen(
         binding: ActivityFlavorBinding,
-        saborEscolhidoStr: String,
-        extraPreco: String,
-        extraQuantidade: String
+        choosedFlavor: String,
+        extraPrice: String,
+        extraQuantity: String
     ){
         val intent = Intent(this, DateActivity::class.java)
-        intent.putExtra("chave_sabor", saborEscolhidoStr)
-        intent.putExtra("chave_preco", extraPreco)
-        intent.putExtra("chave_quantidade", extraQuantidade)
+        intent.putExtra("chave_sabor", choosedFlavor)
+        intent.putExtra("chave_preco", extraPrice)
+        intent.putExtra("chave_quantidade", extraQuantity)
         startActivity(intent)
     }
-    private fun voltar(binding: ActivityFlavorBinding){
+    private fun backScreen(binding: ActivityFlavorBinding){
         val intentCancelFlavor = Intent(this, MainActivity::class.java)
         startActivity(intentCancelFlavor)
         finish()
     }
 
-    private fun recebeExtras(binding: ActivityFlavorBinding){
+    private fun receveingData(binding: ActivityFlavorBinding){
         /** recebendo o dado quantidade da primeira tela*/
         val extrasSabor = intent?.extras
-        processandoDado(binding, extrasSabor)
+        processingData(binding, extrasSabor)
     }
-    private fun processandoDado(binding: ActivityFlavorBinding, extrasSabor: Bundle?){
-        val saborEscolhidoStr = when (binding.saborOpcoes.checkedRadioButtonId){
-            R.id.opcao1 -> "Morango"
-            R.id.opcao2 -> "Chocolate"
-            R.id.opcao3 -> "Café"
-            R.id.opcao4 -> "Red Velvet"
+    private fun processingData(binding: ActivityFlavorBinding, extrasSabor: Bundle?){
+        val choosedFlavorStr = when (binding.flavorOptions.checkedRadioButtonId){
+            R.id.flavor_strawberry-> "Morango"
+            R.id.flavor_chocholate -> "Chocolate"
+            R.id.flavor_coffe -> "Café"
+            R.id.flavor_redvelvet -> "Red Velvet"
             else -> "Caramelo"
         }
-        armazenandoDados(binding, saborEscolhidoStr, extrasSabor)
+        savingDataInBundle(binding, choosedFlavorStr, extrasSabor)
     }
 
-    private fun armazenandoDados(
+    private fun savingDataInBundle(
         binding: ActivityFlavorBinding,
-        saborEscolhidoStr: String,
-        extrasSabor: Bundle?
+        ChoosedFlavorStr: String,
+        extraFlavor: Bundle?
     ){
-        saborEscolido = saborEscolhidoStr
-        extraPreco = extrasSabor?.getString("chave_preco").toString()
-        extraQuantidade = extrasSabor?.getString("chave_quantidade").toString()
+        choosedFlavor = ChoosedFlavorStr
+        extraPrice = extraFlavor?.getString("chave_preco").toString()
+        extraQuantity = extraFlavor?.getString("chave_quantidade").toString()
         
 
-        proximaTela(binding, saborEscolido, extraPreco, extraQuantidade)
+        nextScreen(binding, choosedFlavor, extraPrice, extraQuantity)
     }
 }

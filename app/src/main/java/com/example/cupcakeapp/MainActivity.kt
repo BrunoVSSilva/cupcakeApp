@@ -3,17 +3,14 @@ package com.example.cupcakeapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings.Global.getString
-import android.renderscript.ScriptGroup.Binding
 import android.util.Log
 import com.example.cupcakeapp.databinding.ActivityMainBinding
-import org.w3c.dom.Text
 import java.text.NumberFormat
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    var quantidadeStr: String = ""
-    var valorInTextStr: String = ""
+    var quantityStr: String = ""
+    var princeInStr: String = ""
     /** !!!!!!!!INPUT n DEVE SER CRIADO EM FUNÇÃO!!!!!!!!!!*/
    /** Alterar função quantidadeStr para n ser criada em função*/
 
@@ -26,31 +23,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnNext.setOnClickListener {
-            processandoQuantidade(binding)
-            armazenandoNoBundle(binding, quantidadeStr, valorInTextStr)
-            proximaTela(binding, quantidadeStr, valorInTextStr)
-
+            if(itsNullZeroOrNot(binding)){
+             processingData(binding)
+             savingDataInBundle(binding, quantityStr, princeInStr)
+             nextScreen(binding, quantityStr, princeInStr)
+            }
+            else {
+                setErrorifNullOrZero(binding)
+            }
         }
     }
 
-
-
     private fun setErrorifNullOrZero(binding: ActivityMainBinding){
         binding.apply {
-            itQuantidadeBox.isErrorEnabled = true
-            itQuantidadeBox.error = getString(R.string.erroLogin)
+            itQuantityBox.isErrorEnabled = true
+            itQuantityBox.error = getString(R.string.error_login)
         }
     }
 
     private fun isNotNullOrZero(binding: ActivityMainBinding){
         binding.apply {
-            itQuantidadeBox.isErrorEnabled = false
+            itQuantityBox.isErrorEnabled = false
         }
     }
 
     private fun checkNull(binding: ActivityMainBinding): Boolean{
-        val quantidadeStr = binding.itQuantidade.text.toString()
-        if(quantidadeStr.isEmpty().not()){
+        val quantityStr = binding.itQuantity.text.toString()
+        if(quantityStr.isEmpty().not()){
             Log.d("checkIfNull", "Passou não é nulo")
             return true
         } else {
@@ -73,8 +72,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun checkZero(binding: ActivityMainBinding): Boolean{
-        val quantidadeInt = binding.itQuantidade.text.toString().trim().toInt()
-        if (quantidadeInt != 0) {
+        val quantityInt = binding.itQuantity.text.toString().trim().toInt()
+        if (quantityInt != 0) {
             /** se cair aqui, o input não é 0 */
             Log.d("checkIfZero", "passou, não é 0")
             return true
@@ -99,28 +98,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun processandoQuantidade(binding: ActivityMainBinding) {
+    private fun processingData(binding: ActivityMainBinding) {
         if (itsNullZeroOrNot(binding)){
-            val quantidade = binding.itQuantidade.text.toString().trim().toInt()
-            val custoCupcake = (quantidade*4)
-            val custoCupcakeFormatado = NumberFormat.getCurrencyInstance().format(custoCupcake)
-            val valorInText = getString(R.string.valorEstipulado, custoCupcakeFormatado)
-            armazenandoNoBundle(binding, quantidade.toString(), valorInText)
+            val quantity = binding.itQuantity.text.toString().trim().toInt()
+            val cupcakeCost = (quantity*4)
+            val formattedCupcakeCost = NumberFormat.getCurrencyInstance().format(cupcakeCost)
+            val priceInStr = getString(R.string.subtotal, formattedCupcakeCost)
+            savingDataInBundle(binding, quantity.toString(), priceInStr)
         }
     }
-    private fun armazenandoNoBundle(binding: ActivityMainBinding, quantidade: String, valorInText: String){
-        quantidadeStr = quantidade
-        valorInTextStr = valorInText
+    private fun savingDataInBundle(binding: ActivityMainBinding, quantity: String, priceInStr: String){
+        quantityStr = quantity
+        princeInStr = priceInStr
 
-        proximaTela(binding, quantidadeStr, valorInTextStr)
+        nextScreen(binding, quantityStr!!, princeInStr)
     }
 
-    private fun proximaTela(binding: ActivityMainBinding, quantidadeStr: String, valorInTextStr: String) {
+    private fun nextScreen(binding: ActivityMainBinding, quantityStr: String, priceInStr: String) {
         val intent = Intent(this, FlavorActivity::class.java)
-        Log.d("testeExtra", "$quantidadeStr")
-        Log.d("testeExtra", "$valorInTextStr")
-        intent.putExtra("chave_quantidade", quantidadeStr)
-        intent.putExtra("chave_preco", valorInTextStr)
+        Log.d("testeExtra", "$quantityStr")
+        Log.d("testeExtra", "$priceInStr")
+        intent.putExtra("chave_quantidade", quantityStr)
+        intent.putExtra("chave_preco", priceInStr)
         startActivity(intent)
     }
 }

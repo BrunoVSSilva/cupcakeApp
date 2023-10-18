@@ -16,7 +16,7 @@
             style="@style/Widget.Cupcake.TextView.MainTitle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/escolhadaData"
+            android:text="@string/choose_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,48 +32,48 @@
             app:layout_constraintTop_toBottomOf="@id/tv_escolha_sabor" />
 
         <RadioGroup
-            android:id="@+id/saborOpcoes"
+            android:id="@+id/date_options"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:checkedButton="@id/opcao3"
+            android:checkedButton="@id/wednesday"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider">
 
             <RadioButton
-                android:id="@+id/opcao1"
+                android:id="@+id/monday"
                 style="@style/Widget.AppCompat.CompoundButton.RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/segunda_feira" />
+                android:text="@string/monday" />
 
             <RadioButton
-                android:id="@+id/opcao2"
+                android:id="@+id/tuesday"
                 style="@style/Widget.AppCompat.CompoundButton.RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/terca_feira" />
+                android:text="@string/tuesday" />
 
             <RadioButton
-                android:id="@+id/opcao3"
+                android:id="@+id/wednesday"
                 style="@style/Widget.AppCompat.CompoundButton.RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/quarta_feira" />
+                android:text="@string/wednesday" />
 
             <RadioButton
-                android:id="@+id/opcao4"
+                android:id="@+id/thursday"
                 style="@style/Widget.AppCompat.CompoundButton.RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/quinta_feira" />
+                android:text="@string/thursday" />
 
             <RadioButton
-                android:id="@+id/opcao5"
+                android:id="@+id/friday"
                 style="@style/Widget.AppCompat.CompoundButton.RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/sexta_feira" />
+                android:text="@string/friday" />
         </RadioGroup>
 
         <View
@@ -84,10 +84,10 @@
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/saborOpcoes" />
+            app:layout_constraintTop_toBottomOf="@id/date_options" />
 
         <TextView
-            android:id="@+id/valor_total"
+            android:id="@+id/total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -101,20 +101,20 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/btn_voltar"
+            android:text="@string/btn_back"
             app:layout_constraintEnd_toStartOf="@id/next_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/valor_total" />
+            app:layout_constraintTop_toBottomOf="@id/total_price" />
 
         <Button
             android:id="@+id/next_btn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/btn_avancar"
+            android:text="@string/btn_next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cancel_date"
-            app:layout_constraintTop_toBottomOf="@id/valor_total" />
+            app:layout_constraintTop_toBottomOf="@id/total_price" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
