@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             val priceInStr = getString(R.string.subtotal, formattedCupcakeCost)
             nextScreen(quantity, priceInStr)
         }
+
     private fun nextScreen(quantity: Int, priceInStr: String) {
         val intent = Intent(this, FlavorActivity::class.java)
         intent.putExtra("chave_quantidade", quantity)

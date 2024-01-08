@@ -14,16 +14,17 @@ class OrderSumarryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityOrderSumarryBinding.inflate(layoutInflater)
+        binding = ActivityOrderSumarryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         showOverview(binding)
-
-        binding.finish.setOnClickListener {
-            orderFinalization(binding)
-        }
-        binding.cancelOrder.setOnClickListener {
-            cancelOrder(binding)
+        with(binding){
+            finish.setOnClickListener {
+                orderFinalization(binding)
+            }
+            cancelOrder.setOnClickListener {
+                cancelOrder(binding)
+            }
         }
     }
 

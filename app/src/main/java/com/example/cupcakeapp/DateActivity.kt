@@ -12,7 +12,7 @@ class DateActivity : AppCompatActivity() {
 
     private var extraFlavor: String? = null
     private var extraPrice: String? = null
-    private var extraQuantity: String? = null
+    private var extraQuantity: Int? = null
     private lateinit var binding: ActivityDateBinding
 
 
@@ -24,38 +24,15 @@ class DateActivity : AppCompatActivity() {
 
         extraDate = intent?.extras
 
-        with(binding){
-
+        with(binding) {
+            totalPrice.text = extraDate?.getString("chave_preco")
+            nextBtn.setOnClickListener {
+                nextScreen(chooseDate(), extraPrice, extraQuantity, extraFlavor)
+            }
+            cancelDate.setOnClickListener {
+                backScreen()
+            }
         }
-
-        binding.totalPrice.text = extraDate?.getString("chave_preco")
-
-        binding.nextBtn.setOnClickListener {
-            processingData(extraDate)
-            savingDataInBundle(choosedDate, extraDate)
-            nextScreen(choosedDate, extraPrice, extraQuantity, extraFlavor)
-
-        }
-        binding.cancelDate.setOnClickListener {
-            backScreen()
-        }
-    }
-
-    private fun nextScreen(
-        choosedDate: String,
-        extraPrice: String,
-        extraQuantity: String,
-        extraFlavor: String
-    ) {
-        val intent = Intent(this, OrderSumarryActivity::class.java)
-        with(intent){
-            putExtra("chave_data", choosedDate)
-            putExtra("chave_preco", extraPrice)
-            putExtra("chave_quantidade", extraQuantity)
-            putExtra("chave_sabor", extraFlavor)
-        }
-        Log.d("testeData", "$choosedDate")
-        startActivity(intent)
     }
 
     private fun backScreen() {
@@ -64,30 +41,31 @@ class DateActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun recebeExtras() {
-        /** recebendo o dado quantidade da primeira tela*/
-        val extraDate = intent?.extras
-        processingData(binding, extraDate)
-    }
-
-    private fun processingData(extrasData: Bundle?) {
-        val choosedDateStr = when (binding.dateOptions.checkedRadioButtonId) {
+    private fun chooseDate(): String {
+        return when (binding.dateOptions.checkedRadioButtonId) {
             R.id.monday -> R.string.monday
             R.id.tuesday -> R.string.tuesday
             R.id.wednesday -> R.string.wednesday
             R.id.thursday -> R.string.thursday
-            else -> R.string.friday
-
-        }
-        savingDataInBundle(choosedDateStr.toString() /** corrigir para n precisar do toString()**/, extrasData)
+            R.id.friday -> R.string.friday
+            else -> null
+        }.toString()
     }
 
-    private fun savingDataInBundle(choosedDateStr: String, extrasData: Bundle?) {
-
-        choosedDate = choosedDateStr
-        extraPrice = extrasData?.getString("chave_preco").toString()
-        extraQuantity = extrasData?.getString("chave_quantidade").toString()
-        extraFlavor = extrasData?.getString("chave_sabor").toString()
-        nextScreen(binding, choosedDate, extraPrice, extraQuantity,extraFlavor)
+    private fun nextScreen(
+        choosedDate: String?,
+        extraPrice: String?,
+        extraQuantity: Int?,
+        extraFlavor: String?
+    ) {
+        val intent = Intent(this, OrderSumarryActivity::class.java)
+        with(intent) {
+            putExtra("chave_data", choosedDate)
+            putExtra("chave_preco", extraPrice)
+            putExtra("chave_quantidade", extraQuantity)
+            putExtra("chave_sabor", extraFlavor)
+        }
+        Log.d("testeData", "$choosedDate")
+        startActivity(intent)
     }
 }
