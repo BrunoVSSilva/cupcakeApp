@@ -8,37 +8,40 @@ import com.example.cupcakeapp.databinding.ActivityDateBinding
 
 class DateActivity : AppCompatActivity() {
 
-    private lateinit var choosedDate: String
-    private lateinit var extraFlavor: String
-    private lateinit var extraPrice: String
-    private lateinit var extraQuantity: String
+    private var extraDate = intent?.extras
+
+    private var extraFlavor: String? = null
+    private var extraPrice: String? = null
+    private var extraQuantity: String? = null
     private lateinit var binding: ActivityDateBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityDateBinding.inflate(layoutInflater)
+        binding = ActivityDateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val extraDate = intent?.extras
+        extraDate = intent?.extras
+
+        with(binding){
+
+        }
 
         binding.totalPrice.text = extraDate?.getString("chave_preco")
 
         binding.nextBtn.setOnClickListener {
-            processingData(binding, extraDate)
-            savingDataInBundle(binding, choosedDate, extraDate)
-            nextScreen(binding, choosedDate, extraPrice, extraQuantity, extraFlavor)
+            processingData(extraDate)
+            savingDataInBundle(choosedDate, extraDate)
+            nextScreen(choosedDate, extraPrice, extraQuantity, extraFlavor)
 
         }
         binding.cancelDate.setOnClickListener {
-            backScreen(binding)
+            backScreen()
         }
-
     }
 
     private fun nextScreen(
-        binding: ActivityDateBinding,
         choosedDate: String,
         extraPrice: String,
         extraQuantity: String,
@@ -55,19 +58,19 @@ class DateActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun backScreen(binding: ActivityDateBinding) {
+    private fun backScreen() {
         val intentCancelFlavor = Intent(this, MainActivity::class.java)
         startActivity(intentCancelFlavor)
         finish()
     }
 
-    private fun recebeExtras(binding: ActivityDateBinding) {
+    private fun recebeExtras() {
         /** recebendo o dado quantidade da primeira tela*/
         val extraDate = intent?.extras
         processingData(binding, extraDate)
     }
 
-    private fun processingData(binding: ActivityDateBinding, extrasData: Bundle?) {
+    private fun processingData(extrasData: Bundle?) {
         val choosedDateStr = when (binding.dateOptions.checkedRadioButtonId) {
             R.id.monday -> R.string.monday
             R.id.tuesday -> R.string.tuesday
@@ -76,10 +79,10 @@ class DateActivity : AppCompatActivity() {
             else -> R.string.friday
 
         }
-        savingDataInBundle(binding, choosedDateStr.toString() /** corrigir para n precisar do toString()**/, extrasData)
+        savingDataInBundle(choosedDateStr.toString() /** corrigir para n precisar do toString()**/, extrasData)
     }
 
-    private fun savingDataInBundle(binding: ActivityDateBinding, choosedDateStr: String, extrasData: Bundle?) {
+    private fun savingDataInBundle(choosedDateStr: String, extrasData: Bundle?) {
 
         choosedDate = choosedDateStr
         extraPrice = extrasData?.getString("chave_preco").toString()
