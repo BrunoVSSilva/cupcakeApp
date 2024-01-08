@@ -20,10 +20,10 @@ class OrderSumarryActivity : AppCompatActivity() {
         showOverview(binding)
         with(binding){
             finish.setOnClickListener {
-                orderFinalization(binding)
+                orderFinalization()
             }
             cancelOrder.setOnClickListener {
-                cancelOrder(binding)
+                cancelOrder()
             }
         }
     }
@@ -38,7 +38,8 @@ class OrderSumarryActivity : AppCompatActivity() {
             }
         }
     }
-    private fun orderFinalization(binding: ActivityOrderSumarryBinding){
+
+    private fun orderFinalization(){
         val finalizationAlert = AlertDialog.Builder(this)
             .setTitle(R.string.alertTitle)
             .setMessage(R.string.alertMessage)
@@ -48,7 +49,7 @@ class OrderSumarryActivity : AppCompatActivity() {
             finish()
         }, 3000)
     }
-    private fun cancelOrder(binding: ActivityOrderSumarryBinding){
+    private fun cancelOrder(){
         val intentCancerOrder = Intent(this, MainActivity::class.java)
         startActivity(intentCancerOrder)
         finish()
